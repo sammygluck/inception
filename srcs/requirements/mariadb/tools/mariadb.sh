@@ -21,7 +21,7 @@ if [ ! -d "/var/lib/mysql/${MARIADB_DATABASE}" ]; then
         DELETE FROM mysql.user WHERE User='';
         DROP DATABASE IF EXISTS test;
         FLUSH PRIVILEGES;
-    EOSQL
+EOSQL
     
     # Create your WP user / DB
     mysql -uroot -p"${MARIADB_ROOT_PASS}" <<-EOSQL
@@ -29,7 +29,7 @@ if [ ! -d "/var/lib/mysql/${MARIADB_DATABASE}" ]; then
         CREATE USER IF NOT EXISTS '${MARIADB_USER}'@'%' IDENTIFIED BY '${MARIADB_PASS}';
         GRANT ALL PRIVILEGES ON ${MARIADB_DATABASE}.* TO '${MARIADB_USER}'@'%';
         FLUSH PRIVILEGES;
-    EOSQL
+EOSQL
 
     echo "DB initialization complete."
 else
@@ -41,5 +41,3 @@ mysqladmin -uroot -p"${MARIADB_ROOT_PASS}" shutdown
 
 # Finally run MySQL in the foreground
 exec "$@"
-
-

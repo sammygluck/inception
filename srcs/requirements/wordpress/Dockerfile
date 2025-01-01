@@ -11,6 +11,7 @@ RUN apt-get update && apt-get -y install \
     php-gd \
     php-cli \
     php-mbstring \
+    mariadb-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Install WP-CLI
@@ -32,4 +33,3 @@ EXPOSE 9000
 
 ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
 CMD ["php-fpm7.4", "-F"]
-
